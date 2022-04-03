@@ -35,6 +35,9 @@ const Bookings = () => {
 
     return (
         <div>
+            <div>
+                <h1 style={{color: '#d6994b', textAlign:'center', backgroundColor:'black', padding:10 }}>Bookings</h1>
+            </div>
 
             <Table striped bordered hover variant="dark">
                 <thead>
