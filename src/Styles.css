@@ -1,0 +1,32 @@
+.container{
+min-height: 100vh;
+background-image: url('./Images/background.jpeg');
+background-position: center;
+background-color: black;
+background-size: cover;
+width: '100%';
+
+}
+.booking-main{
+    background-color: black;
+    opacity: .5;
+    min-height: 100vh;
+
+}
+.data{
+    font-size: 3;
+
+}
+.head{
+    background-color: black ;
+    color: bisque;
+    margin: '20px';
+    min-height: max-content;
+   font-size: large;
+  font-weight: lighter;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10;
+}
+.table{
+    margin-top: 20;
+}
