@@ -30,6 +30,8 @@ const Bookings = () => {
 
     const updateBooking = (status, id) => {
         db.collection("bookings").doc(id).update({ status: status })
+        setInfo([])
+        getBookings()
 
     }
 
@@ -78,6 +80,7 @@ const Bookings = () => {
                                             .then((res) => {
                                                 console.log(res.data)
                                                 updateBooking('Accepted', data.id)
+                                             
 
 
                                             })
@@ -89,14 +92,16 @@ const Bookings = () => {
                                     <Button variant='primary' disabled={data.data.status !== "Pending" ? true : false} onClick={() => {
                                         Axios.post('http://server-deploy-bikefinity.herokuapp.com/bikefinity/user/message',
                                             {
-                                                message: 'Your booking is confirmed on ' + data.data.date,
-                                                to: data.data.uPhone
+                                                message: 'Your booking is Denied on ' + data.data.date + 'please book for another day' , 
+                                                to: data.data.uPhone 
+
 
                                             })
 
                                             .then((res) => {
                                                 console.log(res.data)
                                                 updateBooking('Declined', data.id)
+                                               
 
 
                                             })

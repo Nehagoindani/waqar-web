@@ -8,7 +8,7 @@ import '../Images/background.jpeg'
 class Home extends React.Component {
   render() {
     return (
-      <div className='container' style={{backgroundColor: 'red'}}>
+      <div className='container1' style={{backgroundColor: 'red'}}>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#">WaqarSalon</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@ class Home extends React.Component {
                 <a class="nav-link" href="/bookings">Bookings</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="/Products">Products</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
