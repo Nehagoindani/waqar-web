@@ -4,6 +4,7 @@ import db from '../firebase.config.js';
 import Table from 'react-bootstrap/Table'
 import Axios from 'axios';
 import { Button } from 'react-bootstrap'
+import { UserCheck } from 'react-feather'
 
 
 const Bookings = () => {
@@ -34,22 +35,31 @@ const Bookings = () => {
         getBookings()
 
     }
+    const arrivedStatus = (status, id) => {
+        db.collection("bookings").doc(id).update({ arrived: status })
+        setInfo([])
+        getBookings()
+
+    }
 
     return (
         <div>
-            <div>
-                <h1 style={{color: '#d6994b', textAlign:'center', backgroundColor:'black', padding:10 }}>Bookings</h1>
+            <div class="jumbotron jumbotron-fluid md-2">
+                <div class="container">
+                    <h1 class="display-4 text-center">Bookings</h1>
+                </div>
             </div>
 
             <Table striped bordered hover variant="dark">
                 <thead>
-                    <tr style={{textAlign: 'center'}} >
+                    <tr style={{ textAlign: 'center' }} >
                         <th>Name</th>
                         <th>Service</th>
                         <th>TimeSlot</th>
                         <th>Date</th>
                         <th>Actions</th>
                         <th>Status</th>
+                        <th>Arrived</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +70,9 @@ const Bookings = () => {
                                     {data.data.uName}
                                 </td>
                                 <td className='td' >
-                                    {data.data.services}
+                                    {data.data.services.map((item,index)=>(
+                                        <p>{item.name}</p>
+                                    ))}
                                 </td>
                                 <td style={{ color: '#d6994b', fontsize: 3 }} >
                                     {data.data.timeSlot}
@@ -80,7 +92,7 @@ const Bookings = () => {
                                             .then((res) => {
                                                 console.log(res.data)
                                                 updateBooking('Accepted', data.id)
-                                             
+
 
 
                                             })
@@ -92,8 +104,8 @@ const Bookings = () => {
                                     <Button variant='primary' disabled={data.data.status !== "Pending" ? true : false} onClick={() => {
                                         Axios.post('http://server-deploy-bikefinity.herokuapp.com/bikefinity/user/message',
                                             {
-                                                message: 'Your booking is Denied on ' + data.data.date + 'please book for another day' , 
-                                                to: data.data.uPhone 
+                                                message: 'Your booking is Denied on ' + data.data.date + 'please book for another day',
+                                                to: data.data.uPhone
 
 
                                             })
@@ -101,7 +113,7 @@ const Bookings = () => {
                                             .then((res) => {
                                                 console.log(res.data)
                                                 updateBooking('Declined', data.id)
-                                               
+
 
 
                                             })
@@ -113,6 +125,9 @@ const Bookings = () => {
                                 </td>
                                 <td style={{ color: '#d6994b', fontsize: 3 }} >
                                     {data.data.status}
+                                </td>
+                                <td style={{ alignItems: "center", }}>
+                                    <UserCheck color={data.data.arrived === true ? 'green' : 'red'} disabled ={data.data.arrived === true ? true: false} onClick={() => arrivedStatus(true, data.id)} />
                                 </td>
                             </tr>
                         ))
