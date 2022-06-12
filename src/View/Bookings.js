@@ -50,7 +50,7 @@ const Bookings = () => {
                 </div>
             </div>
 
-            <Table striped bordered hover variant="dark">
+            <Table class="table table-hover">
                 <thead>
                     <tr style={{ textAlign: 'center' }} >
                         <th>Name</th>
@@ -70,7 +70,7 @@ const Bookings = () => {
                                     {data.data.uName}
                                 </td>
                                 <td className='td' >
-                                    {data.data.services.map((item,index)=>(
+                                    {data.data.services.map((item, index) => (
                                         <p>{item.name}</p>
                                     ))}
                                 </td>
@@ -127,7 +127,7 @@ const Bookings = () => {
                                     {data.data.status}
                                 </td>
                                 <td style={{ alignItems: "center", }}>
-                                    <UserCheck color={data.data.arrived === true ? 'green' : 'red'} disabled ={data.data.arrived === true ? true: false} onClick={() => arrivedStatus(true, data.id)} />
+                                    <UserCheck color={data.data.arrived === true ? 'green' : 'red'} disabled={data.data.arrived === true ? true : false} onClick={() => arrivedStatus(true, data.id)} />
                                 </td>
                             </tr>
                         ))

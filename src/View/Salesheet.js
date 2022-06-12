@@ -20,29 +20,32 @@ const Salesheet = () => {
     })
 
     const getBookings = () => {
-        const Products = db.collection("bookings").where("arrived", "==", true)
+        const today = new Date();
+        console.log(today)
+        const Products = db.collection("bookings").where("arrived", "==", true ).where("date", "==", today )
             .get().then((querySnapshot) => {
+                let arr = []
                 querySnapshot.forEach(element => {
                     var data = {
                         data: element.data()
                     }
+                    
+                    data.data.services.map((item, index) => {
+                        return arr.push(parseInt(item.price))
+                    })
+
+                    setTemp(arr)
 
                     setInfo(arr => [...arr, data]);
                 });
             })
     }
-    const totalCost = () => {
-        setCount(count, +Cost)
-        console.log(setCount)
-    }
-
-
 
     return (
         <div className='col-md-8 offset-md-2'>
 
-            <Table striped bordered hover variant="dark">
-                <thead>
+            <Table striped bordered hover>
+                <thead class="thead-dark">
                     <tr style={{ textAlign: 'center' }} >
                         <th>Service Name</th>
                         <th>Price</th>
@@ -58,33 +61,36 @@ const Salesheet = () => {
                                     ))}
                                 </td>
                                 <td className='td' >
-                                    
+
                                     {data.data.services.map((item, index) => {
-                                        //                                                                                                                       setTemp(...temp, item.price)
-                                       
-                                       
-                                        return(
+                                        // setTemp(temp.concat(item.price))
+                                        return (
                                             <p key={index}>{item.price}</p>
                                         )
                                     })}
                                 </td>
                             </tr>
+
                         ))
+                    }
+                    {
+                        <tr style={{ fontsize: 5 }}>
+                            <td className='td'>Total</td>
+                            <td className='td'>
+                               {
+                                temp.reduce(
+                                    (a, b) => {
+                                        return a + b
+                                    }, 0
+                                ) 
+                               }
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </Table>
-        
-               
-        
-            
-                
-
         </div>
-        
-
     )
-                
-   
 }
 
 

@@ -28,24 +28,45 @@ const Products = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    db.collection('products')
-      .add({
-        pName: name,
-        price: price,
-        count: count,
-        description: description,
 
+    console.log(image)
 
+    const data = new FormData();
+    data.append('file', image);
+    data.append('upload_preset', 'products');
+    data.append('cloud_name', 'drl9yz7sz');
+    data.append('public_id', 'products98');
+    data.append('api_key', '757583276868283');
+
+    fetch("https://api.cloudinary.com/v1_1/drl9yz7sz/image/upload", {
+    
+      method: 'POST',
+      body: data
+     
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const url = data.url
+        console.log(data)
+        db.collection('products')
+          .add({
+            pName: name,
+            price: price,
+            count: count,
+            description: description,
+            image: url
+          })
+          .then(function () {
+            console.log("products added successfully!");
+            alert('product added')
+          })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+          });
       })
-      .then(function () {
-        console.log("products added successfully!");
-        alert('product added')
-      })
-      .catch(function (error) {
-        console.error("Error writing document: ", error);
+      .catch((err) => {
+        console.log('An error has occured while uploading the image.', err);
       });
-
-
   };
 
   window.addEventListener('load', () => {
@@ -118,6 +139,12 @@ const Products = () => {
               <textarea class="form-control" id="exampleFormControlTextarea1" value={description} onChange={e => setDescription(e.target.value)} rows="2"></textarea>
 
             </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Product Image</label>
+              <input type="file" onChange={e => setImage(e.target.files[0])} />
+              {/* <textarea class="form-control" id="exampleFormControlTextarea1" value={description} onChange={e => setDescription(e.target.value)} rows="2"></textarea> */}
+            </div>
+
             {/* <h6>Select Image </h6>
   <div class ='row' >
     <div class="form-group col-md-8">
