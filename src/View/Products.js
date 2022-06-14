@@ -59,6 +59,8 @@ const Products = () => {
           .then(function () {
             console.log("products added successfully!");
             alert('product added')
+            setInfo([])
+            getBookings()
           })
           .catch(function (error) {
             console.error("Error writing document: ", error);
@@ -74,9 +76,10 @@ const Products = () => {
   })
 
   const getBookings = () => {
-    const Products = db.collection("products").get().then((querySnapshot) => {
+  db.collection("products").get().then((querySnapshot) => {
       querySnapshot.forEach(element => {
         var data = {
+          id: element.id,
           data: element.data()
         }
 
@@ -92,8 +95,7 @@ const Products = () => {
 
   }
   const deleteProduct = (id) => {
-    console.log(id)
-    db.collection('products').doc(id).get()
+    db.collection('products').doc(id).delete()
     setInfo([])
     getBookings()
   }
@@ -191,7 +193,7 @@ const Products = () => {
                         <Button >Update</Button>
 
                         <Button
-                          onClick={() => { deleteProduct(data.data.id) }}
+                          onClick={() => {deleteProduct(data.id) }}
                         >Delete</Button>
 
                       </td>

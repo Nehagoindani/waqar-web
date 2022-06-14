@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import db from '../firebase.config.js';
 import Table from 'react-bootstrap/Table'
 import { Button } from 'react-bootstrap'
+const moment = require('moment')
 
 
 const Salesheet = () => {
@@ -12,6 +13,7 @@ const Salesheet = () => {
     const [temp, setTemp] = useState([])
 
     const [info, setInfo] = useState([])
+    const [date,setDate] = useState(new Date())
 
     var Cost = [price]
 
@@ -19,10 +21,13 @@ const Salesheet = () => {
         getBookings()
     })
 
-    const getBookings = () => {
+    const getBookings = (datee) => {
+
+        console.log("IN get bookings")
         const today = new Date();
-        console.log(today)
-        const Products = db.collection("bookings").where("arrived", "==", true ).where("date", "==", today )
+        // console.log(today)
+
+        const Products = db.collection("bookings").where("arrived", "==", true ).where("date", "==", datee )
             .get().then((querySnapshot) => {
                 let arr = []
                 querySnapshot.forEach(element => {
@@ -43,6 +48,12 @@ const Salesheet = () => {
 
     return (
         <div className='col-md-8 offset-md-2'>
+            <input type="date" onChange={(e) => {
+                setDate(new Date(e.target.value))
+                setInfo([])
+                console.log("before get booking hittt", new Date(e.target.value))
+                getBookings(e.target.value)
+            }}></input>
 
             <Table striped bordered hover>
                 <thead class="thead-dark">
