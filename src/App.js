@@ -24,8 +24,8 @@ function App() {
   return (
 
     <Router>
-      {
-        localStorage.getItem('loggedIn') == true ? (
+      {/* {
+        localStorage.getItem('loggedIn') == true ? ( */}
           <>
             <Navbar />
             <Routes>
@@ -35,8 +35,8 @@ function App() {
               <Route path="/Salesheet" element={<Salesheet />} />
             </Routes>
           </>
-        ) : <Login/>
-      }
+        {/* ) : <Login/>
+      } */}
     </Router>
 
   );
