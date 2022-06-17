@@ -11,6 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.Home {
-  background-color:red;
+.bg{
+  background-color: rgb(156, 191, 192);
 }
+
+
+.container1{
+  min-height: 100vh;
+  background-image: url('./Images/web2.jpg');
+  background: rgba(0.5);
+  background-position: center;
+  background-color: black;
+  background-size: cover;
+  
+  }

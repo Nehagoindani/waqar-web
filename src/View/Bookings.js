@@ -43,8 +43,8 @@ const Bookings = () => {
     }
 
     return (
-        <div>
-            <div class="jumbotron jumbotron-fluid md-2">
+        <div className='bg'>
+            <div class="jumbotron jumbotron-fluid md-5">
                 <div class="container">
                     <h1 class="display-4 text-center">Bookings</h1>
                 </div>
@@ -53,6 +53,7 @@ const Bookings = () => {
             <Table class="table table-hover">
                 <thead>
                     <tr style={{ textAlign: 'center' }} >
+                    <th scope="col">#</th>
                         <th>Name</th>
                         <th>Service</th>
                         <th>TimeSlot</th>
@@ -66,7 +67,10 @@ const Bookings = () => {
                     {
                         info.map((data) => (
                             <tr style={{ fontsize: 5 }}>
-                                <td style={{ color: '#d6994b', fontsize: 3 }}  >
+                                <td>
+                                    1
+                                </td>
+                                <td style={{ color: 'brown', fontsize: 3 }}  >
                                     {data.data.uName}
                                 </td>
                                 <td className='td' >

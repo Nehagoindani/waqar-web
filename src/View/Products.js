@@ -10,6 +10,7 @@ const Products = () => {
   const [price, setPrice] = useState('')
   const [count, setCount] = useState('')
   const [description, setDescription] = useState('')
+  const [pID, setPID] = useState('')
   const [info, setInfo] = useState([])
   const [image, setImage] = useState('')
 
@@ -39,10 +40,10 @@ const Products = () => {
     data.append('api_key', '757583276868283');
 
     fetch("https://api.cloudinary.com/v1_1/drl9yz7sz/image/upload", {
-    
+
       method: 'POST',
       body: data
-     
+
     })
       .then((res) => res.json())
       .then((data) => {
@@ -50,11 +51,12 @@ const Products = () => {
         console.log(data)
         db.collection('products')
           .add({
+            pID: pID,
             pName: name,
             price: price,
             count: count,
             description: description,
-            image: url
+            image: url,
           })
           .then(function () {
             console.log("products added successfully!");
@@ -76,17 +78,20 @@ const Products = () => {
   })
 
   const getBookings = () => {
-  db.collection("products").get().then((querySnapshot) => {
+    db.collection("products").get().then((querySnapshot) => {
       querySnapshot.forEach(element => {
         var data = {
           id: element.id,
           data: element.data()
         }
-
         setInfo(arr => [...arr, data]);
+        setPID(data.id)
       });
+
     })
+
   }
+
 
   const updateBooking = (status, id) => {
     db.collection("Products").doc(id).update({ status: status })
@@ -101,7 +106,7 @@ const Products = () => {
   }
 
   return (
-    <div className='col-md-8 offset-md-2'>
+    <div className='col-md-8 offset-md-2' >
       <div class="jumbotron jumbotron-fluid md-2">
         <div class="container">
           <h1 class="display-4 text-center">Products</h1>
@@ -124,15 +129,8 @@ const Products = () => {
 
               </div>
               <div class="form-group col-md-6">
-                <label for="exampleFormControlSelect1">Product Count</label>
-
-                <select class="form-control" id="exampleFormControlSelect1" value={count} onChange={e => setCount(e.target.value)}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+                <label for="inputZip">Count</label>
+                <input type="text" class="form-control" value={count} onChange={e => setCount(e.target.value)} id="inputZip" />
 
               </div>
             </div>
@@ -147,22 +145,14 @@ const Products = () => {
               {/* <textarea class="form-control" id="exampleFormControlTextarea1" value={description} onChange={e => setDescription(e.target.value)} rows="2"></textarea> */}
             </div>
 
-            {/* <h6>Select Image </h6>
-  <div class ='row' >
-    <div class="form-group col-md-8">
-    <input type='file' onChange={handleChange}/> </div>
-    <div class="form-group col-md-4"> 
-    <button class="btn btn-primary" onClick={handleUpload}> chooose</button> </div>
-  </div> */}
-
             <button type="submit" onClick={handleSubmit} class="btn btn-primary btn-block">Submit</button>
           </form>
         </div>
 
         <div className='col-md-8'>
-          <div>List of Products</div>
+          <div className='list-heading'>List of Products</div>
           <div>
-            <Table striped bordered hover variant="dark">
+            <Table className='table table-bordered'>
               <thead>
                 <tr style={{ textAlign: 'center' }} >
                   <th>Product Name</th>
@@ -193,7 +183,7 @@ const Products = () => {
                         <Button >Update</Button>
 
                         <Button
-                          onClick={() => {deleteProduct(data.id) }}
+                          onClick={() => { deleteProduct(data.id) }}
                         >Delete</Button>
 
                       </td>

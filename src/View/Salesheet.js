@@ -8,33 +8,33 @@ const moment = require('moment')
 const Salesheet = () => {
 
 
-    const [price, setPrice] = useState('')
+    const [price, setPrice] = useState([])
     const [count, setCount] = useState('')
     const [temp, setTemp] = useState([])
 
     const [info, setInfo] = useState([])
-    const [date,setDate] = useState(new Date())
+    const [date, setDate] = useState(new Date())
 
     var Cost = [price]
 
     window.addEventListener('load', () => {
-        getBookings()
+        getBookings(date)
     })
 
     const getBookings = (datee) => {
 
-        console.log("IN get bookings")
-        const today = new Date();
-        // console.log(today)
+        setTemp([])
 
-        const Products = db.collection("bookings").where("arrived", "==", true ).where("date", "==", datee )
+        const d = moment(datee).format('DD-M-YYYY')
+
+        const Products = db.collection("bookings").where("arrived", "==", true).where("date", "==", d)
             .get().then((querySnapshot) => {
                 let arr = []
                 querySnapshot.forEach(element => {
                     var data = {
                         data: element.data()
                     }
-                    
+
                     data.data.services.map((item, index) => {
                         return arr.push(parseInt(item.price))
                     })
@@ -88,13 +88,13 @@ const Salesheet = () => {
                         <tr style={{ fontsize: 5 }}>
                             <td className='td'>Total</td>
                             <td className='td'>
-                               {
-                                temp.reduce(
-                                    (a, b) => {
-                                        return a + b
-                                    }, 0
-                                ) 
-                               }
+                                {
+                                    temp.reduce(
+                                        (a, b) => {
+                                            return a + b
+                                        }, 0
+                                    )
+                                }
                             </td>
                         </tr>
                     }
