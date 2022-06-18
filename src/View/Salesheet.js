@@ -22,9 +22,9 @@ const Salesheet = () => {
     window.addEventListener('load', () => {
         if (localStorage.getItem('loggedIn') === 'false') {
             navigate('/login')
-          } else {
+        } else {
             getBookings(date)
-          }
+        }
     })
 
     const getBookings = (datee) => {
@@ -53,25 +53,28 @@ const Salesheet = () => {
     }
 
     return (
-        <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-            <div style={{ display: 'flex', flex: 0.2, margin: 10 }}>
-                <h1>Sales Sheet</h1>
+        // <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+        <div className='col-md-8 offset-md-2'>
+            <div style={{ padding: 20 }}>
+                <div class="container">
+                    <h1 class="display-5 text-center" style={{ fontWeight: 'bold', color: '#d6994b' }}>Sales Sheet</h1>
+                </div>
             </div>
-            <div style={{ display: 'flex', flex: 0.3, margin: 40, alignItems: 'center' }}>
-                <h5>Select Date</h5>
-                <input type="date" style={{marginLeft: 30}} onChange={(e) => {
+            <div style={{ display: 'flex', flex: 0.3, alignItems: 'center', justifyContent:'center' }}>
+                <h5 style={{  fontWeight:'bold' }} >Select Date</h5>
+                <input type="date"  style={{ marginLeft: 30, marginBottom:13  }}  onChange={(e) => {
                     setDate(new Date(e.target.value))
                     setInfo([])
                     console.log("before get booking hittt", new Date(e.target.value))
                     getBookings(e.target.value)
                 }}></input>
             </div>
-            <div style={{ display: 'flex', flex: 0.5, margin: 10}}>
+            <div style={{ display: 'flex', flex: 0.5, margin: 10 }}>
                 <div className='col-md-8 offset-md-2'>
 
-                    <Table striped bordered hover>
-                        <thead class="thead-dark">
-                            <tr style={{ textAlign: 'center' }} >
+                    <Table table table-bordered>
+                        <thead>
+                            <tr style={{ textAlign: 'center'}} >
                                 <th>Service Name</th>
                                 <th>Price</th>
                             </tr>

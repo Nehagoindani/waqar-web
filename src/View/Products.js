@@ -110,15 +110,15 @@ const Products = () => {
   }
 
   return (
-    <div className='col-md-8 offset-md-2' >
-      <div class="jumbotron jumbotron-fluid md-2">
+    <div className='col-md-8 offset-md-2'>
+      <div style={{padding:20}}>
         <div class="container">
-          <h1 class="display-4 text-center">Products</h1>
+          <h1 class="display-5 text-center" style={{ fontWeight: 'bold', color:'#d6994b' }}>Inventory</h1>
         </div>
       </div>
       <div className='row'>
-        <div className='col-md-4'>
-          <div>Add Product</div>
+        <div className='col-md-3'>
+          <div style={{ fontWeight: 'bold', color:'#d6994b' }}><h4>Add Product</h4></div>
           <form onSubmit={handleSubmit}>
             <div class="form-group">
               <label for="exampleFormControlInput1">Product Name</label>
@@ -133,7 +133,7 @@ const Products = () => {
 
               </div>
               <div class="form-group col-md-6">
-                <label for="inputZip">Count</label>
+                <label for="inputZip">Quantity</label>
                 <input type="text" class="form-control" value={count} onChange={e => setCount(e.target.value)} id="inputZip" />
 
               </div>
@@ -149,14 +149,14 @@ const Products = () => {
               {/* <textarea class="form-control" id="exampleFormControlTextarea1" value={description} onChange={e => setDescription(e.target.value)} rows="2"></textarea> */}
             </div>
 
-            <button type="submit" onClick={handleSubmit} class="btn btn-primary btn-block">Submit</button>
+            <button type="submit" onClick={handleSubmit} class="btn btn-black" style={{backgroundColor:'#d6994b', color:'white',}}>Submit</button>
           </form>
         </div>
 
         <div className='col-md-8'>
-          <div className='list-heading'>List of Products</div>
+          <div style={{ fontWeight: 'bold', color:'#d6994b', paddingLeft:50}}><h4>Product List</h4></div>
           <div>
-            <Table className='table table-bordered'>
+            <Table className='table table-hover'>
               <thead>
                 <tr style={{ textAlign: 'center' }} >
                   <th>Product Name</th>
@@ -171,24 +171,24 @@ const Products = () => {
                 {
                   info.map((data) => (
                     <tr style={{ fontsize: 5 }}>
-                      <td style={{ color: '#d6994b', fontsize: 3 }}  >
+                      <td style={{ color:'#d6994b', fontsize: 3 }}  >
                         {data.data.pName}
                       </td>
                       <td className='td' >
                         {data.data.price}
                       </td>
-                      <td style={{ color: '#d6994b', fontsize: 3 }} >
+                      <td style={{  fontsize: 3 }} >
                         {data.data.count}
                       </td>
-                      <td style={{ color: '#d6994b', fontsize: 3 }} >
+                      <td style={{  fontsize: 3 }} >
                         {data.data.description}
                       </td>
-                      <td style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Button
+                      <td style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Button style={{backgroundColor: 'black', borderColor:'black'}}
                           onClick={() => { getProductById(data.id) }}
                         >Update</Button>
-
-                        <Button
+                        <text style={{ color:'white'}}> -- </text>
+                        <Button  style={{backgroundColor: 'black', borderColor:'black'}}
                           onClick={() => { deleteProduct(data.id) }}
                         >Delete</Button>
 

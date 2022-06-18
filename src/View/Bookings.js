@@ -50,20 +50,27 @@ const Bookings = () => {
     }
 
     return (
-        <div className='bg'>
-            <div class="jumbotron jumbotron-fluid md-5">
-                <div class="container">
-                    <h1 class="display-4 text-center">Bookings</h1>
-                </div>
-            </div>
+        // <div className='bg'>
+        //     <div class="jumbotron jumbotron-fluid md-5">
+        //         <div class="container">
+        //             <h1 class="display-5 text-center">Bookings</h1>
+        //         </div>
+        //     </div>
+
+        <div className='col-md-8 offset-md-2'>
+        <div style={{padding:20}}>
+          <div class="container">
+            <h1 class="display-5 text-center" style={{ fontWeight: 'bold', color:'#d6994b' }}>Bookings</h1>
+          </div>
+        </div>
 
             <Table class="table table-hover">
                 <thead>
                     <tr style={{ textAlign: 'center' }} >
-                    <th scope="col">#</th>
+                    <th scope="col">S#</th>
                         <th>Name</th>
-                        <th>Service</th>
-                        <th>TimeSlot</th>
+                        <th>Services</th>
+                        <th>Time Slot</th>
                         <th>Date</th>
                         <th>Actions</th>
                         <th>Status</th>
@@ -77,7 +84,7 @@ const Bookings = () => {
                                 <td>
                                     {index + 1}
                                 </td>
-                                <td style={{ color: 'brown', fontsize: 3 }}  >
+                                <td style={{ color: '#d6994b', fontsize: 3 }}  >
                                     {data.data.uName}
                                 </td>
                                 <td className='td' >
@@ -85,14 +92,14 @@ const Bookings = () => {
                                         <p>{item.name}</p>
                                     ))}
                                 </td>
-                                <td style={{ color: '#d6994b', fontsize: 3 }} >
+                                <td style={{ fontsize: 3 }} >
                                     {data.data.timeSlot}
                                 </td>
-                                <td style={{ color: '#d6994b', fontsize: 3 }} >
+                                <td style={{ fontsize: 3 }} >
                                     {data.data.date}
                                 </td>
                                 <td style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-                                    <Button variant='primary' disabled={data.data.status !== "Pending" ? true : false} onClick={() => {
+                                    <Button style={{backgroundColor: 'black', borderColor:'black'}} variant='primary' disabled={data.data.status !== "Pending" ? true : false} onClick={() => {
                                         Axios.post('http://server-deploy-bikefinity.herokuapp.com/bikefinity/user/message',
                                             {
                                                 message: 'Your booking is confirmed on ' + data.data.date,
@@ -104,28 +111,23 @@ const Bookings = () => {
                                                 console.log(res.data)
                                                 updateBooking('Accepted', data.id)
 
-
-
                                             })
                                             .catch((err) => {
                                                 console.log(err)
                                             })
                                     }}>Accept</Button>
-
-                                    <Button variant='primary' disabled={data.data.status !== "Pending" ? true : false} onClick={() => {
+                                     <text style={{ color:'white'}}> -- </text>
+                                    <Button style={{backgroundColor: 'black', borderColor:'black'}} variant='primary' disabled={data.data.status !== "Pending" ? true : false} onClick={() => {
                                         Axios.post('http://server-deploy-bikefinity.herokuapp.com/bikefinity/user/message',
                                             {
-                                                message: 'Your booking is Denied on ' + data.data.date + 'please book for another day',
+                                                message: 'Your Booking has been Denied for ' + data.data.date + '. Please choose another day',
                                                 to: data.data.uPhone
-
 
                                             })
 
                                             .then((res) => {
                                                 console.log(res.data)
                                                 updateBooking('Declined', data.id)
-
-
 
                                             })
                                             .catch((err) => {

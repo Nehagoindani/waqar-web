@@ -21,7 +21,7 @@ class Navbar extends React.Component {
                 <a class="nav-link" href="/bookings">Bookings</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/Products">Products</a>
+                <a class="nav-link" href="/Products">Inventory</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/Salesheet">Salesheet</a>
