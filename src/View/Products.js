@@ -95,7 +95,7 @@ const Products = () => {
 
   const getProductById = (id) => {
     db.collection("Products").doc(id).get().then((querySnapshot) => {
-         console.log(q)
+      //   console.log(q)
 
     })
     // setInfo([])

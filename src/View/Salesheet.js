@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 const moment = require('moment')
 
-
 const Salesheet = () => {
 
     const navigate = useNavigate()
@@ -56,7 +55,7 @@ const Salesheet = () => {
     return (
         <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
             <div style={{ display: 'flex', flex: 0.2, margin: 10 }}>
-                <h2>Sales Sheet</h2>
+                <h1>Sales Sheet</h1>
             </div>
             <div style={{ display: 'flex', flex: 0.3, margin: 40, alignItems: 'center' }}>
                 <h5>Select Date</h5>

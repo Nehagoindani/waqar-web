@@ -1,6 +1,7 @@
 import React, { Component, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import '../Images/background.jpeg'
+import logo from '../Images/icon.png'
 
 function Home (){
 
@@ -17,9 +18,10 @@ function Home (){
   
     return (
       <div className='container1'>
-        
         <div>
-          <h1 style={{ color: '#d6994b', fontSize: '30', textAlign: 'center', position: 'relative', top: 120 }}>WaqarSalon Portal</h1>
+        {/* <img src={logo} style={{ height: 70, width: 90, opacity:1, position: 'relative', justifyContent:'center', alignItems:'center', alignSelf:'center', alignContent: 'center', top: 20 }} /> */}
+        <h3 style={{ color: '#d6994b', fontWeight:'bold', textAlign: 'center', fontSize: '12', position: 'relative', top: 100, opacity:1 }}> Welcome To</h3>
+          <h1 style={{ color: 'white', fontWeight:'bold', fontSize: '33', textAlign: 'center', position: 'relative', top: 100,  opacity:1  }}>Waqar's Salon Portal</h1>
         </div>
 
       </div>

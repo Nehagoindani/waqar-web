@@ -1,6 +1,6 @@
 import React, { useState, Component } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import logo from '../Images/waqarlogo.png'
 function Login() {
 
    const navigate = useNavigate()
@@ -22,7 +22,7 @@ function Login() {
 
       }
       else {
-         alert('username/ password incorrect')
+         alert('Invalid Credentials. Please Try Again.')
       }
    }
    return (
@@ -30,13 +30,13 @@ function Login() {
       <>
          <div class="sidenav">
             <div class="login-main-text">
-               <h1>Waqar Salon</h1>
-               <h2>Admin<br /> Login Page</h2>
-               <p>Login from here to access.</p>
+            <img src={logo} style={{ height: 100, width: 250 }} />
+               <h2 style={{ fontWeight: 'bold', paddingLeft: 20 }}>Staff Dashboard</h2>
+               <p style={{ paddingLeft: 20 }}>Login from here to access.</p>
             </div>
          </div>
          <div class="main">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-8">
                <div class="login-form">
                   <form>
                      <div class="form-group">
@@ -50,14 +50,14 @@ function Login() {
                      <button type="submit" class="btn btn-black"
                         onClick={() => {
                            if (username == 'admin' && password == 'abc') {
-                              alert('login successful')
+                              alert('Login Successful!')
                               setLoggedIn(true)
                               localStorage.setItem('loggedIn', 'true')
                               navigate('/')
 
                            }
                            else {
-                              alert('username/ password incorrect')
+                              alert('Invalid Credentials. Please Try Again.')
                            }
                         }}
                      >Login</button>
