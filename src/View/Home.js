@@ -1,8 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import '../Images/background.jpeg'
 
-class Home extends React.Component {
-  render() {
+function Home (){
+
+  const navigate = useNavigate()
+
+  // localStorage.setItem('loggedIn', 'false')
+  // navigate('/login')
+
+  useEffect(() => {
+    if (localStorage.getItem('loggedIn') === 'false') {
+      navigate('/login')
+    }
+  }, [])
+  
     return (
       <div className='container1'>
         
@@ -13,5 +25,5 @@ class Home extends React.Component {
       </div>
     );
   }
-}
+
 export default Home

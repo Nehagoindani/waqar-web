@@ -15,28 +15,19 @@ import { useEffect } from 'react';
 
 function App() {
 
-  useEffect(() => {
-    localStorage.setItem('loggedIn', false)
-  }, [])
-
   //yhn pr condition lgegi keh logged in agr true hay tw private routes pr jaye wrna public route pr
 
   return (
 
     <Router>
-      {/* {
-        localStorage.getItem('loggedIn') == true ? ( */}
-          <>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/bookings" element={<Bookings />} />
-              <Route path="/Products" element={<Products />} />
-              <Route path="/Salesheet" element={<Salesheet />} />
-            </Routes>
-          </>
-        {/* ) : <Login/>
-      } */}
+      <Navbar />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/Products" element={<Products />} />
+        <Route path="/Salesheet" element={<Salesheet />} />
+      </Routes>
     </Router>
 
   );

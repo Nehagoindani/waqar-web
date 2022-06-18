@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import db from '../firebase.config.js';
 import Table from 'react-bootstrap/Table'
 import { Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 
 const Products = () => {
+
+  const navigate = useNavigate()
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
@@ -12,20 +15,15 @@ const Products = () => {
   const [description, setDescription] = useState('')
   const [pID, setPID] = useState('')
   const [info, setInfo] = useState([])
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState()
 
-  const handleChange = e => {
-    if (e.target.files[0]) {
-
-    }
-  }
-  const handleUpload = (e) => {
-    e.preventDefault();
-    if (image == null)
-      return;
-    db.ref(`/images/${image.name}`).put(image)
-      .on("state_changed", alert("success"), alert);
-  }
+  // const handleUpload = (e) => {
+  //   e.preventDefault();
+  //   if (image == null)
+  //     return;
+  //   db.ref(`/images/${image.name}`).put(image)
+  //     .on("state_changed", alert("success"), alert);
+  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,8 +34,6 @@ const Products = () => {
     data.append('file', image);
     data.append('upload_preset', 'products');
     data.append('cloud_name', 'drl9yz7sz');
-    data.append('public_id', 'products98');
-    data.append('api_key', '757583276868283');
 
     fetch("https://api.cloudinary.com/v1_1/drl9yz7sz/image/upload", {
 
@@ -48,7 +44,7 @@ const Products = () => {
       .then((res) => res.json())
       .then((data) => {
         const url = data.url
-        console.log(data)
+        console.log("chek", data.url)
         db.collection('products')
           .add({
             pID: pID,
@@ -61,6 +57,7 @@ const Products = () => {
           .then(function () {
             console.log("products added successfully!");
             alert('product added')
+            setName(null)
             setInfo([])
             getBookings()
           })
@@ -74,7 +71,11 @@ const Products = () => {
   };
 
   window.addEventListener('load', () => {
-    getBookings()
+    if (localStorage.getItem('loggedIn') === 'false') {
+      navigate('/login')
+    } else {
+      getBookings()
+    }
   })
 
   const getBookings = () => {
@@ -92,13 +93,16 @@ const Products = () => {
 
   }
 
+  const getProductById = (id) => {
+    db.collection("Products").doc(id).get().then((querySnapshot) => {
+         console.log(q)
 
-  const updateBooking = (status, id) => {
-    db.collection("Products").doc(id).update({ status: status })
-    setInfo([])
-    getBookings()
+    })
+    // setInfo([])
+    // getBookings()
 
   }
+
   const deleteProduct = (id) => {
     db.collection('products').doc(id).delete()
     setInfo([])
@@ -180,7 +184,9 @@ const Products = () => {
                         {data.data.description}
                       </td>
                       <td style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Button >Update</Button>
+                        <Button
+                          onClick={() => { getProductById(data.id) }}
+                        >Update</Button>
 
                         <Button
                           onClick={() => { deleteProduct(data.id) }}

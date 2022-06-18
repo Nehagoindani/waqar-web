@@ -5,14 +5,21 @@ import Table from 'react-bootstrap/Table'
 import Axios from 'axios';
 import { Button } from 'react-bootstrap'
 import { UserCheck } from 'react-feather'
+import { useNavigate } from 'react-router-dom';
 
 
 const Bookings = () => {
 
+    const navigate = useNavigate()
+
     const [info, setInfo] = useState([])
 
     window.addEventListener('load', () => {
-        getBookings()
+        if (localStorage.getItem('loggedIn') === 'false') {
+            navigate('/login')
+          } else {
+            getBookings()
+          }
     })
 
     const getBookings = () => {
@@ -65,10 +72,10 @@ const Bookings = () => {
                 </thead>
                 <tbody>
                     {
-                        info.map((data) => (
+                        info.map((data, index) => (
                             <tr style={{ fontsize: 5 }}>
                                 <td>
-                                    1
+                                    {index + 1}
                                 </td>
                                 <td style={{ color: 'brown', fontsize: 3 }}  >
                                     {data.data.uName}
