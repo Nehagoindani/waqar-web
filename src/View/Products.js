@@ -159,7 +159,7 @@ const Products = () => {
             <Table className='table table-hover'>
               <thead>
                 <tr style={{ textAlign: 'center' }} >
-                  <th>Product Name</th>
+                  <th>Name</th>
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>Description</th>
@@ -170,7 +170,7 @@ const Products = () => {
               <tbody>
                 {
                   info.map((data) => (
-                    <tr style={{ fontsize: 5 }}>
+                    <tr style={{ fontsize: 5 , textAlign:'center'}}>
                       <td style={{ color:'#d6994b', fontsize: 3 }}  >
                         {data.data.pName}
                       </td>

@@ -70,7 +70,7 @@ const Bookings = () => {
                     <th scope="col">S#</th>
                         <th>Name</th>
                         <th>Services</th>
-                        <th>Time Slot</th>
+                        <th>Time</th>
                         <th>Date</th>
                         <th>Actions</th>
                         <th>Status</th>
@@ -80,7 +80,7 @@ const Bookings = () => {
                 <tbody>
                     {
                         info.map((data, index) => (
-                            <tr style={{ fontsize: 5 }}>
+                            <tr style={{ fontsize: 5, textAlign:'center' }}>
                                 <td>
                                     {index + 1}
                                 </td>

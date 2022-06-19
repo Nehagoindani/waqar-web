@@ -36,15 +36,15 @@ function Login() {
             </div>
          </div>
          <div class="main">
-            <div class="col-md-4 col-sm-8">
+            <div class="col-md-3 col-md-2">
                <div class="login-form">
                   <form>
                      <div class="form-group">
-                        <label>User Name</label>
+                        <label style={{color:'#d6994b', fontWeight:'bold'}}>User Name</label>
                         <input type="text" class="form-control" placeholder="User Name" value={username} onChange={e => setUsername(e.target.value)} />
                      </div>
                      <div class="form-group">
-                        <label>Password</label>
+                     <label style={{color:'#d6994b', fontWeight:'bold'}}>Password</label>
                         <input type="password" class="form-control" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
                      </div>
                      <button type="submit" class="btn btn-black"

@@ -74,7 +74,7 @@ const Salesheet = () => {
 
                     <Table table table-bordered>
                         <thead>
-                            <tr style={{ textAlign: 'center'}} >
+                            <tr style={{ textAlign: 'left'}} >
                                 <th>Service Name</th>
                                 <th>Price</th>
                             </tr>
@@ -102,7 +102,7 @@ const Salesheet = () => {
                                 ))
                             }
                             {
-                                <tr style={{ fontsize: 5 }}>
+                                <tr style={{ fontsize: 5, color:'#d6994b', fontWeight:'bold' }}>
                                     <td className='td'>Total</td>
                                     <td className='td'>
                                         {
