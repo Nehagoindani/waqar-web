@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import '../Images/background.jpeg'
 import logo from '../Images/3waq.png'
+import { useNavigate } from 'react-router-dom';
 
-class Navbar extends React.Component {
-  render() {
+function Navbar (){
+  const navigate = useNavigate()
+
+function Logout(){
+ 
+    localStorage.setItem('loggedIn', 'false')
+   navigate('/login')
+      
+
+
+}
+
     return (
       <div>
         <nav class="navbar navbar-expand-lg navbar-light ">
@@ -28,7 +39,8 @@ class Navbar extends React.Component {
 
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/Salesheet">Login</a>
+               <a class="nav-link" href="" onClick={Logout} >Logout</a>
+               
               </li>
             </ul>
           </div>
@@ -38,5 +50,5 @@ class Navbar extends React.Component {
       </div>
     );
   }
-}
+
 export default Navbar

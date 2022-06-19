@@ -7,8 +7,7 @@ function Home (){
 
   const navigate = useNavigate()
 
-  // localStorage.setItem('loggedIn', 'false')
-  // navigate('/login')
+  
 
   useEffect(() => {
     if (localStorage.getItem('loggedIn') === 'false') {
