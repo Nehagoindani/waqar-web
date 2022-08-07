@@ -57,7 +57,7 @@ This Component Displays the form to add products and also display list of produc
 3. **Salesheet** 
 Display the total profit of the day by slecting specific Date. 
 
-2. **LOGIN? LOGOT** 
+2. **LOGIN / LOGOT** 
 Only admin Can login in to the Web Portal by entering username and password . 
 
 
